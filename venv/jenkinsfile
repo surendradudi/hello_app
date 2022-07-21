@@ -18,17 +18,14 @@ pipeline {
             //         environment name: 'DEPLOY_TO', value: 'stage_v1'
             //     }
             // }
-            steps {
-            
-                 sh  ''' 
-                      ssh ubuntu@44.203.199.162 << 'EOF' 
-                      echo $ENV
-                      ./deploy_script.sh $ENV
+            steps{
+               sshagent(credentials: ['14e6a28a-5862-4427-a942-cbd2ff3cd50a'], ignoreMissing: true) {
+                sh '''
+                    ssh -o StrictHostKeyChecking=no ubuntu@44.203.199.162 << "EOT"
 
-                        
-                           
-                '''
+                    '''
 
+}
         }
     }
 
