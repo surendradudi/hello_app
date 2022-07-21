@@ -24,7 +24,7 @@ pipeline {
                       ssh ubuntu@44.203.199.162 << 'EOF' 
                       echo $ENV
                       ./deploy_script.sh $ENV
-                      
+
                         
                            
                 '''
@@ -34,21 +34,21 @@ pipeline {
 
 
     }
-    post {
+    //post {
         // For Slack Notification Success Build From Jenkins Pipeline
-       success {
-         script {
-           statusComment = "[${env.JOB_NAME}] <${env.BUILD_URL}|#${env.BUILD_NUMBER}> Core Project Of Build Was Successfully for ${env.GIT_BRANCH} :tada:"
-           slackSend color: 'good', message: statusComment
-    }
-       }
+      // success {
+        // script {
+          // statusComment = "[${env.JOB_NAME}] <${env.BUILD_URL}|#${env.BUILD_NUMBER}> Core Project Of Build Was Successfully for ${env.GIT_BRANCH} :tada:"
+           //slackSend color: 'good', message: statusComment
+    //}
+      // }
        // For Slack Notification Failed Build From Jenkins Pipeline
-       failure {
-           script {
-        statusComment = "[${env.JOB_NAME}] <${env.BUILD_URL}|#${env.BUILD_NUMBER}> Core Project Of Build was Failed for ${env.GIT_BRANCH} :tada:"
-        slackSend color: 'danger', message: statusComment
-    }
-       }
+       //failure {
+         //  script {
+        //statusComment = "[${env.JOB_NAME}] <${env.BUILD_URL}|#${env.BUILD_NUMBER}> Core Project Of Build was Failed for ${env.GIT_BRANCH} :tada:"
+        //slackSend color: 'danger', message: statusComment
+    //}
+      // }
     //    always {
     //    mail to: 'bcl@nclasters.org',
     //       subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
@@ -56,5 +56,5 @@ pipeline {
     // }
        
     
-    }
+    //}
 }
